@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>售后</title>
+    <link rel="icon" href="./img/assets/img/favicon.ico">
+    <link href='../css/material.css' rel="stylesheet">
+    <link href="../css/vuetify.min.css" rel="stylesheet">
+    <script src="../js/vue/vue.js"></script>
+    <script src="../js/vue/vuetify.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <!--<script src="../js/common.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="../css/webbase.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/pages-JD-index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/widget-jquery.autocomplete.css"/>
+
+
+    <style type="text/css">
+
+        html, body {
+            /*margin: 0;*/
+            /*padding: 0;*/
+            font: 12px/1.6 "microsoft yahei", "Arial", sans-serif;
+            color: #333;
+            -webkit-text-size-adjust: none;
+        }
+
+        .banner-buttons {
+            display: inline-block;
+            height: 110px;
+            color: #009af2;
+            width: auto;
+            font-size: 1.13rem;
+        }
+
+        .button-li-unchoose {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            width: 111px;
+            height: 42px;
+            margin-left: 24px;
+            line-height: 42px;
+            font-size: 1.43rem;
+            padding: 1px 2px;
+            float: none;
+            cursor: pointer;
+            background: #fff;
+            color: #33beff;
+            border: 1px solid #33beff;
+        }
+
+        .active {
+            background: #009af2;
+            color: #fff;
+        }
+
+
+
+        /*shjahs*/
+
+
+        .content {
+            position: relative;
+            width: 100%;
+            height: 826px;
+        }
+
+
+
+
+        .remove-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .remove-wrapper .content-wrapper {
+            width: 1000px;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .remove-wrapper .content-wrapper .title-wrapper {
+            position: relative;
+            width: 100%;
+            height: 5.38rem;
+            font-size: 1.13rem;
+            color: #009af2;
+            line-height: 86px;
+        }
+        .content-wrapper .title-wrapper .left-title {
+            display: inline-block;
+            float: left;
+            width: auto;
+            height: 25px;
+            margin-left: 20%;
+            margin-top: 26px;
+            line-height: 25px;
+            text-align: center;
+        }
+        .separator {
+            font-weight: 700;
+            width: .63rem;
+            height: 1rem;
+            color: #009af2;
+        }
+        .remove-wrapper .content-wrapper .title-wrapper .right-title {
+            display: inline-block;
+            float: right;
+            width: auto;
+            height: 25px;
+            margin-right: 20%;
+            line-height: 25px;
+            margin-top: 26px;
+            text-align: center;
+        }
+        .el-input__inner {
+            color: #afafaf;
+            height: 42px;
+            line-height: 1;
+            padding: 0 18px;
+            width: 100%;
+            border-radius: 2px;
+            font-size: 1rem;
+        }
+        .remove-wrapper .content-wrapper .content-wra {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .content-wrapper .content-wra .left-content {
+            position: absolute;
+            left: 0;
+            width: 500px;
+            height: 480px;
+        }
+
+        .el-form{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        .el-input__inners {
+            -webkit-appearance: none;
+            background-color: #fff;
+            background-image: none;
+            border-radius: 4px;
+            border: 1px solid #dcdfe6;
+            /* -webkit-box-sizing: border-box; */
+            /* box-sizing: border-box; */
+            /* color: #606266; */
+            /* display: inline-block; */
+            font-size: inherit;
+            height: 40px;
+            line-height: 40px;
+            outline: 0;
+            padding: 0 15px;
+            -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            width: 100%;
+        }
+        .el-form-item {
+            margin-bottom: 22px;
+        }
+         .el-form-item__label {
+            text-align: right;
+            float: left;
+            font-size: 1.13rem;
+            color: #232323;
+            line-height: 40px;
+        }
+        .el-form-item__content {
+            line-height: 40px;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .el-form-item:before {
+            display: table;
+            content: "";
+        }
+         .el-input {
+            font-size: 1rem;
+            width: 72.01%;
+            color: #232323;
+        }
+        .el-form-item__content:after, .el-form-item__content:before {
+            display: table;
+            content: "";
+        }
+        .el-form-item:after {
+            clear: both;
+        }
+       .el-radio-group {
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .el-radio {
+            color: #606266;
+            cursor: pointer;
+            margin-right: 30px;
+        }
+        .el-radio__label {
+            font-size: 14px;
+            padding-left: 10px;
+        }
+        .el-radio__input {
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .el-radio__inner {
+            border: 1px solid #dcdfe6;
+            border-radius: 100%;
+            width: 14px;
+            height: 14px;
+            background-color: #fff;
+            cursor: pointer;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .el-radio__inner:after {
+            width: 4px;
+            height: 4px;
+            border-radius: 100%;
+            background-color: #fff;
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%,-50%) scale(0);
+            transform: translate(-50%,-50%) scale(0);
+            -webkit-transition: -webkit-transform .15s ease-in;
+            transition: -webkit-transform .15s ease-in;
+            transition: transform .15s ease-in;
+            transition: transform .15s ease-in,-webkit-transform .15s ease-in;
+        }
+        .el-radio__original {
+            opacity: 0;
+            outline: 0;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+        }
+        .el-form-item__content:before {
+            display: table;
+            content: "";
+        }
+
+        .right-content {
+            position: absolute;
+            width: 500px;
+            height: 100%;
+            margin-left: 50%;
+        }
+
+        .sub {
+            position: relative;
+            width: 300px;
+            height: 70px;
+            margin: 70px auto 0;
+        }
+         .sub .text {
+            position: relative;
+            width: 300px;
+            height: 20px;
+            line-height: 20px;
+        }
+        .read {
+            position: absolute;
+        }
+        .el-checkbox {
+            color: #606266;
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
+            margin-right: 30px;
+        }
+       .sub .text .el-checkbox__input {
+            cursor: pointer;
+            outline: 0;
+            line-height: 1;
+            vertical-align: middle;
+            margin-left: 60px;
+        }
+        .el-checkbox__inner {
+            display: inline-block;
+            position: relative;
+            border: 1px solid #dcdfe6;
+            border-radius: 2px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 14px;
+            height: 14px;
+            background-color: #fff;
+            z-index: 1;
+            -webkit-transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+            transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+        }
+        .el-checkbox__inner:after {
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            content: "";
+            border: 1px solid #fff;
+            border-left: 0;
+            border-top: 0;
+            height: 7px;
+            left: 4px;
+            position: absolute;
+            top: 1px;
+            -webkit-transform: rotate(45deg) scaleY(0);
+            transform: rotate(45deg) scaleY(0);
+            width: 3px;
+            -webkit-transition: -webkit-transform .15s ease-in .05s;
+            transition: -webkit-transform .15s ease-in .05s;
+            transition: transform .15s ease-in .05s;
+            transition: transform .15s ease-in .05s,-webkit-transform .15s ease-in .05s;
+            -webkit-transform-origin: center;
+            transform-origin: center;
+        }
+        .el-checkbox__original {
+            opacity: 0;
+            outline: 0;
+            position: absolute;
+            margin: 0;
+            width: 0;
+            height: 0;
+            z-index: -1;
+        }
+       .el-checkbox__label {
+            display: inline-block;
+            padding-left: 7px;
+            line-height: 19px;
+            font-size: .75rem;
+        }
+        .privacy {
+            float: right;
+            margin-right: 50px;
+        }
+        .el-button--text {
+            color: #009af2;
+            font-size: .75rem;
+        }
+         .sub .btn {
+            position: relative;
+            display: inline-block;
+            width: 300px;
+            height: 40px;
+            margin-top: 12px;
+            border-radius: 20px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 1rem;
+            background: #fff;
+            color: #33beff;
+            border: 1px solid #33beff;
+        }
+    </style>
+</head>
+<body>
+
+<div class='nav-top'>
+    <shortcut/>
+    <!--头部-->
+    <div class='header' id='headApp'>
+        <div class='py-container'>
+            <div class='yui3-g Logo'>
+                <div class='yui3-u Left logoArea'>
+                    <a class='logo-bd' title='大金' href='index.html' target='_blank'></a>
+                </div>
+                <div class='yui3-u Center searchArea'>
+                    <div class='search'>
+                        <form action='' class='sui-form form-inline'>
+                            <!--searchAutoComplete-->
+                            <div class='input-append'>
+                                <input type='text' id='autocomplete' v-model='key'
+                                       class='input-error input-xxlarge'/>
+                                <button @click='search' class='sui-btn btn-xlarge btn-danger' type='button'>搜索</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class='hotwords'>
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class='yui3-u Right shopArea'>
+                    <div class='fr shopcar'>
+                        <div class='show-shopcar' id='shopcar'>
+                            <span class='car'></span>
+                            <a class='sui-btn btn-default btn-xlarge' href='cart.html' target='_blank'>
+                                <span>我的购物车</span>
+                                <i class='shopnum'>0</i>
+                            </a>
+                            <div class='clearfix shopcarlist' id='shopcarlist' style='display:none'>
+                                <p>'啊哦，你的购物车还没有商品哦！'</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='yui3-g NavList'>
+                <!--<div class='yui3-u Left all-sort'>
+                    <h4>大金空调</h4>
+                </div>-->
+                <div class='yui3-u Center navArea'>
+                    <ul class='nav'>
+
+                        <li class='f-item'><a href='index.html'>首页</a></li>
+                        <li class='f-item'><a href='https://www.daikin-china.com.cn/?hmsr=baidu&hmpl=pcbz&hmcu=0528&hmkw=Title'>大金商城</a></li>
+                        <li class='f-item byui3-u Left all-sort'><a href=''>售后</a></li>
+                        <li class='f-item'><a href="zixun.html">咨询</a></li>
+                        <li class='f-item'><a href="yuding.html">预定</a></li>
+                        <li class='f-item'><a href='templat.html'>联系我们</a></li>
+                        <!--                            <li class='f-item'><a href='seckill-index.html' target='_blank'>秒杀</a></li>
+                        -->                        </ul>
+                </div>
+                <div class='yui3-u Right'></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+    <div id="frameScroll" class="py-container">
+        <div class="bread">
+            <!--面包屑-->
+            <ul class=" sui-breadcrumb">
+                <li><span>全部结果:</span></li>
+                <li><a href="index.html">首页</a></li>
+                <li><span>售后</span></li>
+            </ul>
+        </div>
+
+        <div class="dialog-box-content">
+            <div>
+                <img src="../img/shouhou.png" alt="">
+            </div>
+            <div class="banner-buttons" style="float: left;margin-top: 2em">
+                <ul style="height: 100%;">
+                    <li class="button-li-unchoose active"><span>在线 保修</span></li>
+                    <li class="button-li-unchoose">保养 预约</li>
+                    <li class="button-li-unchoose">移机 预约</li>
+                </ul>
+
+            </div>
+
+            <div class="content"><!---->
+                <div class="remove-wrapper">
+                    <div class="content-wrapper">
+                        <div class="title-wrapper">
+                            <div class="left-title"><span class="separator">/</span>
+                                用户信息
+                                <span class="separator">/</span></div>
+                            <div class="right-title"><span class="separator">/</span>
+                                移机预约情况
+                                <span class="separator">/</span></div>
+                        </div>
+                        <div class="content-wra">
+                            <div class="left-content">
+                                <form class="el-form">
+                                    <div class="el-form-item is-required"><label for="name" class="el-form-item__label"
+                                                                                 style="width: 100px;">姓名</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                maxlength="15" placeholder="请输入姓名"
+                                                                                class="el-input__inners"><!----><!---->
+                                                <!----><!----></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item"><label for="gender" class="el-form-item__label"
+                                                                     style="width: 100px;">性别</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div role="radiogroup" class="el-radio-group"><label role="radio"
+                                                                                                 aria-checked="true"
+                                                                                                 tabindex="0"
+                                                                                                 class="el-radio is-checked"><span
+                                                    class="el-radio__input is-checked"><span
+                                                    class="el-radio__inner"></span><input type="radio"
+                                                                                          aria-hidden="true"
+                                                                                          tabindex="-1"
+                                                                                          class="el-radio__original"
+                                                                                          value="1"></span><span
+                                                    class="el-radio__label">先生<!----></span></label> <label role="radio"
+                                                                                                            tabindex="-1"
+                                                                                                            class="el-radio"><span
+                                                    class="el-radio__input"><span class="el-radio__inner"></span><input
+                                                    type="radio" aria-hidden="true" tabindex="-1"
+                                                    class="el-radio__original" value="2"></span><span
+                                                    class="el-radio__label">女士<!----></span></label></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item"><label for="company" class="el-form-item__label"
+                                                                     style="width: 100px;">公司</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                maxlength="30" class="el-input__inners">
+                                                <!----><!----><!----><!----></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item is-required"><label for="mobilePhone"
+                                                                                 class="el-form-item__label"
+                                                                                 style="width: 100px;">手机</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input" style="width: 39%;"><!----><input type="text"
+                                                                                                    autocomplete="off"
+                                                                                                    maxlength="11"
+                                                                                                    placeholder="请输入手机号"
+                                                                                                    class="el-input__inners">
+                                                <!----><!----><!----><!----></div>
+                                            <button type="button" class="el-button el-button--default"><!---->
+                                                <!----><span>发送验证码</span></button>
+                                            <button type="button" class="el-button el-button--default"
+                                                    style="display: none;"><!----><!----><span>秒</span></button><!---->
+                                        </div>
+                                    </div>
+                                    <div class="el-form-item is-required"><label for="verificationCode"
+                                                                                 class="el-form-item__label"
+                                                                                 style="width: 100px;">验证码</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                placeholder="请输入手机验证码"
+                                                                                class="el-input__inners"><!----><!---->
+                                                <!----><!----></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item"><label for="telephone" class="el-form-item__label"
+                                                                     style="width: 100px;">电话</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                maxlength="12" placeholder="请输入备用联系方式"
+                                                                                class="el-input__inners"><!----><!---->
+                                                <!----><!----></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item is-required"><label for="area" class="el-form-item__label"
+                                                                                 style="width: 100px;">所在地区</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-row">
+                                                <div class="el-col el-col-8" style="width: 100px;">
+                                                    <div class="el-select" style="width: 120%;"><!---->
+                                                        <div class="el-input el-input--suffix"><!----><input type="text"
+                                                                                                             readonly="readonly"
+                                                                                                             autocomplete="off"
+                                                                                                             placeholder="省"
+                                                                                                             class="el-input__inners">
+                                                            <!----><span class="el-input__suffix"><span
+                                                                    class="el-input__suffix-inner"><i
+                                                                    class="el-select__caret el-input__icon el-icon-arrow-up"></i>
+                                                                <!----><!----><!----><!----><!----></span><!----></span>
+                                                            <!----><!----></div>
+                                                        <div class="el-select-dropdown el-popper"
+                                                             style="display: none; min-width: 120px;">
+                                                            <div class="el-scrollbar" style="">
+                                                                <div class="el-select-dropdown__wrap el-scrollbar__wrap"
+                                                                     style="margin-bottom: -5px; margin-right: -5px;">
+                                                                    <ul class="el-scrollbar__view el-select-dropdown__list">
+                                                                        <!---->
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>北京市</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>天津市</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>河北省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>山西省</span></li>
+                                                                        <li class="el-select-dropdown__item"><span>内蒙古自治区</span>
+                                                                        </li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>辽宁省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>吉林省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>黑龙江省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>上海市</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>江苏省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>浙江省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>安徽省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>福建省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>江西省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>山东省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>河南省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>湖北省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>湖南省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>广东省</span></li>
+                                                                        <li class="el-select-dropdown__item"><span>广西壮族自治区</span>
+                                                                        </li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>海南省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>重庆市</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>四川省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>贵州省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>云南省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>西藏自治区</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>陕西省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>甘肃省</span></li>
+                                                                        <li class="el-select-dropdown__item">
+                                                                            <span>青海省</span></li>
+                                                                        <li class="el-select-dropdown__item"><span>宁夏回族自治区</span>
+                                                                        </li>
+                                                                        <li class="el-select-dropdown__item"><span>新疆维吾尔自治区</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="el-scrollbar__bar is-horizontal">
+                                                                    <div class="el-scrollbar__thumb"
+                                                                         style="transform: translateX(0%);"></div>
+                                                                </div>
+                                                                <div class="el-scrollbar__bar is-vertical">
+                                                                    <div class="el-scrollbar__thumb"
+                                                                         style="transform: translateY(0%);"></div>
+                                                                </div>
+                                                            </div><!----></div>
+                                                    </div>
+                                                </div>
+                                                <div class="el-col el-col-8" style="width: 100px;">
+                                                    <div class="el-select" style="width: 120%;"><!---->
+                                                        <div class="el-input is-disabled el-input--suffix"><!----><input
+                                                                type="text" disabled="disabled" readonly="readonly"
+                                                                autocomplete="off" placeholder="市"
+                                                                class="el-input__inners"><!----><span
+                                                                class="el-input__suffix"><span
+                                                                class="el-input__suffix-inner"><i
+                                                                class="el-select__caret el-input__icon el-icon-arrow-up"></i>
+                                                            <!----><!----><!----><!----><!----></span><!----></span>
+                                                            <!----><!----></div>
+                                                        <div class="el-select-dropdown el-popper"
+                                                             style="display: none; min-width: 120px;">
+                                                            <div class="el-scrollbar" style="display: none;">
+                                                                <div class="el-select-dropdown__wrap el-scrollbar__wrap"
+                                                                     style="margin-bottom: -5px; margin-right: -5px;">
+                                                                    <ul class="el-scrollbar__view el-select-dropdown__list"></ul>
+                                                                </div>
+                                                                <div class="el-scrollbar__bar is-horizontal">
+                                                                    <div class="el-scrollbar__thumb"
+                                                                         style="transform: translateX(0%);"></div>
+                                                                </div>
+                                                                <div class="el-scrollbar__bar is-vertical">
+                                                                    <div class="el-scrollbar__thumb"
+                                                                         style="transform: translateY(0%);"></div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="el-select-dropdown__empty">
+                                                                无数据
+                                                            </p></div>
+                                                    </div>
+                                                </div>
+                                                <div class="el-col el-col-8" style="width: 100px;">
+                                                    <div class="el-select" style="width: 120%;"><!---->
+                                                        <div class="el-input is-disabled el-input--suffix"><!----><input
+                                                                type="text" disabled="disabled" readonly="readonly"
+                                                                autocomplete="off" placeholder="区"
+                                                                class="el-input__inners"><!----><span
+                                                                class="el-input__suffix"><span
+                                                                class="el-input__suffix-inner"><i
+                                                                class="el-select__caret el-input__icon el-icon-arrow-up"></i>
+                                                            <!----><!----><!----><!----><!----></span><!----></span>
+                                                            <!----><!----></div>
+                                                        <div class="el-select-dropdown el-popper"
+                                                             style="display: none; min-width: 120px;">
+                                                            <div class="el-scrollbar" style="display: none;">
+                                                                <div class="el-select-dropdown__wrap el-scrollbar__wrap"
+                                                                     style="margin-bottom: -5px; margin-right: -5px;">
+                                                                    <ul class="el-scrollbar__view el-select-dropdown__list"></ul>
+                                                                </div>
+                                                                <div class="el-scrollbar__bar is-horizontal">
+                                                                    <div class="el-scrollbar__thumb"
+                                                                         style="transform: translateX(0%);"></div>
+                                                                </div>
+                                                                <div class="el-scrollbar__bar is-vertical">
+                                                                    <div class="el-scrollbar__thumb"
+                                                                         style="transform: translateY(0%);"></div>
+                                                                </div>
+                                                            </div>
+                                                            <p class="el-select-dropdown__empty">
+                                                                无数据
+                                                            </p></div>
+                                                    </div>
+                                                </div>
+                                            </div><!----></div>
+                                    </div>
+                                    <div class="el-form-item is-required"><label for="address"
+                                                                                 class="el-form-item__label"
+                                                                                 style="width: 100px;">详细地址</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                placeholder="请输入详细地址" maxlength="50"
+                                                                                class="el-input__inners"><!----><!---->
+                                                <!----><!----></div><!----></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="right-content">
+                                <form class="el-form f-form">
+                                    <div class="el-form-item is-required"><label for="productTypeText"
+                                                                                 class="el-form-item__label"
+                                                                                 style="width: 100px;">产品分类</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-select"><!---->
+                                                <div class="el-input el-input--suffix"><!----><input type="text"
+                                                                                                     readonly="readonly"
+                                                                                                     autocomplete="off"
+                                                                                                     placeholder="请添加产品分类"
+                                                                                                     class="el-input__inners">
+                                                    <!----><span class="el-input__suffix"><span
+                                                            class="el-input__suffix-inner"><i
+                                                            class="el-select__caret el-input__icon el-icon-arrow-up"></i>
+                                                        <!----><!----><!----><!----><!----></span><!----></span><!---->
+                                                    <!----></div>
+                                                <div class="el-select-dropdown el-popper"
+                                                     style="display: none; min-width: 325px;">
+                                                    <div class="el-scrollbar" style="">
+                                                        <div class="el-select-dropdown__wrap el-scrollbar__wrap"
+                                                             style="margin-bottom: -5px; margin-right: -5px;">
+                                                            <ul class="el-scrollbar__view el-select-dropdown__list">
+                                                                <!---->
+                                                                <li class="el-select-dropdown__item"><span>家用产品</span>
+                                                                </li>
+                                                                <li class="el-select-dropdown__item"><span>商用VRV</span>
+                                                                </li>
+                                                                <li class="el-select-dropdown__item"><span>家用中央空调</span>
+                                                                </li>
+                                                                <li class="el-select-dropdown__item"><span>空气净化器</span>
+                                                                </li>
+                                                                <li class="el-select-dropdown__item">
+                                                                    <span>冷暖两用房间空调</span></li>
+                                                                <li class="el-select-dropdown__item"><span>多组件空调</span>
+                                                                </li>
+                                                                <li class="el-select-dropdown__item"><span>地暖</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="el-scrollbar__bar is-horizontal">
+                                                            <div class="el-scrollbar__thumb"
+                                                                 style="transform: translateX(0%);"></div>
+                                                        </div>
+                                                        <div class="el-scrollbar__bar is-vertical">
+                                                            <div class="el-scrollbar__thumb"
+                                                                 style="transform: translateY(0%);"></div>
+                                                        </div>
+                                                    </div><!----></div>
+                                            </div><!----></div>
+                                    </div>
+                                    <div class="el-form-item"><label for="productType" class="el-form-item__label"
+                                                                     style="width: 100px;">机型</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                maxlength="22" class="el-input__inners">
+                                                <!----><!----><!----><!----></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item"><label for="productNum" class="el-form-item__label"
+                                                                     style="width: 100px;">机号</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                maxlength="22" class="el-input__inners">
+                                                <!----><!----><!----><!----></div><!----></div>
+                                    </div>
+                                    <div class="el-form-item"><label class="el-form-item__label" style="width: 100px;">购入日期</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-form-item"><!---->
+                                                <div class="el-form-item__content">
+                                                    <div class="el-date-editor el-input el-input--prefix el-input--suffix el-date-editor--date"
+                                                         style="width: 88.47%;"><!----><input type="text"
+                                                                                              autocomplete="off" name=""
+                                                                                              placeholder="请选择购入年份"
+                                                                                              class="el-input__inners"><span
+                                                            class="el-input__prefix"><i
+                                                            class="el-input__icon el-icon-date"></i><!----></span><span
+                                                            class="el-input__suffix"><span
+                                                            class="el-input__suffix-inner"><i
+                                                            class="el-input__icon"></i><!----><!----><!---->
+                                                        <!----></span><!----></span><!----><!----></div><!----></div>
+                                            </div><!----></div>
+                                    </div>
+                                    <div class="el-form-item is-required"><label for="visitDate"
+                                                                                 class="el-form-item__label"
+                                                                                 style="width: 100px;">上门时间</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                placeholder="请选择上门时间"
+                                                                                class="el-input__inners"><!----><!---->
+                                                <!----><!----></div>
+                                            <span><div role="tooltip" id="el-popover-4139" aria-hidden="true"
+                                                       class="el-popover el-popper" style="display: none;"><!----><div
+                                                    class="calendar-wrapper"><div class="calendar-content"><section
+                                                    data-v-2ebcbc83="" class="wh_container"><div data-v-2ebcbc83=""
+                                                                                                 class="wh_content_all"><div
+                                                    data-v-2ebcbc83="" class="wh_top_changge"><li data-v-2ebcbc83=""><div
+                                                    data-v-2ebcbc83="" class="wh_jiantou1"></div></li> <li
+                                                    data-v-2ebcbc83="" class="wh_content_li">2021年1月</li> <li
+                                                    data-v-2ebcbc83=""><div data-v-2ebcbc83=""
+                                                                            class="wh_jiantou2"></div></li></div> <div
+                                                    data-v-2ebcbc83="" class="wh_content"><div data-v-2ebcbc83=""
+                                                                                               class="wh_content_item"><div
+                                                    data-v-2ebcbc83="" class="wh_top_tag">一</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_top_tag">二</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_top_tag">三</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_top_tag">四</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_top_tag">五</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_top_tag">六</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_top_tag">日</div></div></div> <div
+                                                    data-v-2ebcbc83="" class="wh_content"><div data-v-2ebcbc83=""
+                                                                                               class="wh_content_item"><div
+                                                    data-v-2ebcbc83=""
+                                                    class="wh_item_date wh_other_dayhide">28</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">29</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">30</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">31</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">1</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">2</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">3</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">4</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_isToday">5</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">6</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">7</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">8</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">9</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">10</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">11</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">12</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">13</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">14</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">15</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">16</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">17</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">18</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">19</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">20</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">21</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">22</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">23</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">24</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">25</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">26</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">27</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">28</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">29</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">30</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date">31</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">1</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">2</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">3</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">4</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">5</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">6</div></div><div
+                                                    data-v-2ebcbc83="" class="wh_content_item"><div data-v-2ebcbc83=""
+                                                                                                    class="wh_item_date wh_other_dayhide">7</div></div></div></div></section> <div
+                                                    class="label"><div class="logo"></div> <span
+                                                    class="des">可选择日期</span></div></div> <div
+                                                    class="calendar-btn">确认</div></div></div></span><!----></div>
+                                    </div>
+                                    <div class="el-form-item" placeholder="请补充内容"><label for="liaisonMatters"
+                                                                                         class="el-form-item__label"
+                                                                                         style="width: 100px;">联络事项</label>
+                                        <div class="el-form-item__content" style="margin-left: 100px;">
+                                            <div class="el-input"><!----><input type="text" autocomplete="off"
+                                                                                maxlength="100" class="el-input__inners">
+                                                <!----><!----><!----><!----></div><!----></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="sub">
+                            <div class="text">
+                                <div class="read"><label class="el-checkbox"><span class="el-checkbox__input"><span
+                                        class="el-checkbox__inner"></span><input type="checkbox" aria-hidden="false"
+                                                                                 class="el-checkbox__original" value=""></span><span
+                                        class="el-checkbox__label">我已阅读并同意<!----></span></label></div>
+                                <div class="privacy">
+                                    <button type="button" class="el-button el-button--text"><!---->
+                                        <!----><span>《隐私政策》</span></button>
+                                </div>
+                            </div>
+                            <div class="btn">确认预约</div>
+                        </div>
+                        <div class="el-dialog__wrapper" style="display: none;">
+                            <div role="dialog" aria-modal="true" aria-label="《大金空调技术有限公司隐私政策》" class="el-dialog"
+                                 style="margin-top: 15vh; width: 30%;">
+                                <div class="el-dialog__header"><span class="el-dialog__title">《大金空调技术有限公司隐私政策》</span>
+                                    <button type="button" aria-label="Close" class="el-dialog__headerbtn"><i
+                                            class="el-dialog__close el-icon el-icon-close"></i></button>
+                                </div><!---->
+                                <div class="el-dialog__footer"><span class="dialog-footer"><button type="button"
+                                                                                                   class="el-button el-button--primary"><!---->
+                                    <!----><span>确 定</span></button></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<!--底部栏位-->
+<!--页面底部，由js动态加载-->
+<!-- 底部栏位 -->
+<!--页面底部，由js动态加载-->
+<script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
+<div class="clearfix footer" style="bottom: 0"></div>
+<script type="text/javascript">$(".footer").load("foot.html");</script>
+<!--页面底部END-->
+<!--页面底部END-->
+<script type="text/javascript" src="../js/model/cartModel.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../js/plugins/sui/sui.min.js"></script>
+

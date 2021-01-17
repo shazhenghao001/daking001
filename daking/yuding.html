@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="icon" href="./img/assets/img/favicon.ico">
+    <link href='../css/material.css' rel="stylesheet">
+    <link href="../css/vuetify.min.css" rel="stylesheet">
+    <script src="../js/vue/vue.js"></script>
+    <script src="../js/vue/vuetify.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <!--<script src="../js/common.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="../css/webbase.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/pages-JD-index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/widget-jquery.autocomplete.css"/>
+
+
+    <style type="text/css">
+
+        html, body {
+            /*margin: 0;*/
+            /*padding: 0;*/
+            font: 12px/1.6 "microsoft yahei", "Arial", sans-serif;
+            color: #333;
+            -webkit-text-size-adjust: none;
+        }
+
+        .dialog-cont-box {
+            width: 100%;
+            text-align: center;
+        }
+
+        .goods-checboxs {
+            width: 480px;
+            margin: 0 auto;
+            display: flex;
+            display: -webkit-flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2%;
+        }
+
+        .input-list > h5 {
+            margin: 5px 0;
+            font-weight: bold;
+            text-align: left;
+            color: #0096df;
+            font-size: 15px;
+
+        }
+
+        .input-list-box > span {
+            margin: 5px 0;
+            font-weight: bold;
+            text-align: left;
+            color: #0096df;
+            font-size: 15px;
+
+        }
+
+        .input-list-box {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .input-list-box li.cityBox {
+            padding: 0 0 9px;
+        }
+
+        .cityBox .inputBox div {
+            width: 25%;
+            float: left;
+            border: none;
+            /* border: 1px solid red; */
+            padding: 0;
+        }
+
+        .input-li {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid #dedede;
+        }
+
+        /* .form-inline {
+             !* border: 1px solid #ff0; *!
+             overflow: hidden;
+             height: 34px;
+             width: 76%;
+             position: absolute;
+             left: 18%;
+         }
+         .form-inline .form-group {
+             width: 33.3%;
+             float: left;
+             opacity: 0;
+         }
+         .form-inline select {
+             width: 100%;
+             height: auto;
+             line-height: inherit;
+             font: 400 15px microsoft yahei;
+             border: 1px solid red;
+         }
+         .input-li>input {
+             display: table-cell;
+             width: 45%;
+             vertical-align: middle;
+             line-height: normal;
+
+             border: none;
+             color: #969696;
+             font: 400 15px microsoft yahei;
+             line-height: normal;
+         }
+         .label-check1 {
+             padding-left: 10px;
+         }
+         .e-selfecheckbox {
+             display: none;
+         }
+         */
+
+
+        .input-list-box li {
+            width: 100%;
+            /* text-align: left; */
+            /* display: flex; */
+            /* display: -webkit-flex; */
+            /* justify-content: flex-start; */
+            /* padding: 12px 0; */
+            overflow: hidden;
+            border-bottom: 1px solid #dedede;
+            position: relative;
+        }
+
+        .input-list-box .fx-box span {
+            display: block;
+            width: 18%;
+            /*font: 400 15px microsoft yahei;*/
+            color: #333;
+            /*font-weight: bold;*/
+            float: left;
+            text-align: left;
+        }
+        .input-list-box .fx-box input[type='radio'] {
+            /* opacity: 0; */
+            display: none;
+        }
+
+        .input-list-box .fx-box label.lab01 {
+            margin-right: 15px;
+        }
+
+
+
+
+       .input-list-box .fx-box input[type='radio']:checked + label::before {
+            padding: 2px;
+            box-sizing: border-box;
+            background-color: #969696;
+            background-clip: content-box;
+        }
+        .input-list-box .fx-box input[type='radio'] + label::before {
+            content: '';
+            display: inline-block;
+            box-sizing: border-box;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #969696;
+            position: absolute;
+            top: 2px;
+            left: 0;
+        }
+        .input-list-box .fx-box label {
+            position: relative;
+            padding-left: 25px;
+            float: left;
+        }
+
+        .input-list-box .fx-box #select_fang {
+              color: #969696;
+              font: 400 15px microsoft yahei;
+              line-height: inherit;
+              height: auto;
+              align-items: center;
+              justify-content: center;
+              margin: 0 5px;
+              border-bottom: 1px solid #969696;
+              background: none;
+              padding: 0;
+              border-radius: 0;
+          }
+
+          .input-list-box .fx-box select {
+              border: 0;
+              appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              width: auto;
+              text-align: center;
+              text-align: center;
+              text-align-last: center;
+          }
+          .input-list-box .fx-box #select_ting {
+              color: #969696;
+              font: 400 15px microsoft yahei;
+              line-height: inherit;
+              height: auto;
+              align-items: center;
+              justify-content: center;
+              margin: 0 5px;
+              border-bottom: 1px solid #969696;
+              background: none;
+              padding: 0;
+              border-radius: 0;
+          }
+
+
+
+
+
+          .input-list-box .fx-box select {
+            border: 0;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            width: auto;
+            text-align: center;
+            text-align: center;
+            text-align-last: center;
+        }
+        .input-list-box .fx-box label {
+            position: relative;
+            padding-left: 25px;
+            float: left;
+        }
+        .input-list-box .fx-box input[type='radio'] + label::before {
+            content: '';
+            display: inline-block;
+            box-sizing: border-box;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #969696;
+            position: absolute;
+            top: 2px;
+            left: 0;
+        }
+         .pfm {
+             padding: 10px 0;
+             display: flex;
+             display: -webkit-flex;
+             justify-content: flex-start;
+         }
+
+         .pfm span {
+            float: left;
+            width: 18%;
+            color: #333;
+            /*font: 700 15px microsoft yahei;*/
+            text-align: left;
+        }
+        .pfm .pfmwz {
+            display: inline;
+            font: 400 15px microsoft yahei;
+            color: #969696;
+            float: left;
+        }
+        .pfm .pfm-input {
+            width: 40%;
+            border-radius: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            vertical-align: middle;
+            color: #969696;
+            float: left;
+            font: 400 12px microsoft yahei;
+        }
+       ol, ul, li {
+             margin: 0;
+             padding: 0;
+             list-style: none;
+         }
+
+         .input-list-box .fx-box {
+             font: 400 15px microsoft yahei;
+             color: #969696;
+             padding: 10px 0;
+             border-bottom: 1px solid #dedede;
+             overflow: hidden;
+         }
+
+         .input-textarea {
+             width: 100%;
+             text-align: left;
+             padding: 12px 0;
+         }
+
+        .input-textarea>textarea {
+            width: 100%;
+            height: 70px;
+            resize: none;
+            outline: none;
+            border: 1px solid #dedede;
+            padding: 10px;
+            color: #969696;
+            font: 400 15px microsoft yahei;
+        }
+        .codebox {
+            border: none;
+            width: 100%;
+            padding: 0;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+       .codebox input {
+            width: 50%;
+            height: 35px;
+            text-align: center;
+            border: 1px solid #dedede;
+        }
+
+
+
+       .codebox .code {
+            width: 40%;
+            display: block;
+        }
+        .dialog-tips {
+            width: 100%;
+            text-align: left;
+            padding: 20px 0;
+        }
+        .agree-box {
+            position: relative;
+        }
+        .input-list>h5 {
+            margin: 5px 0;
+            font-weight: bold;
+            text-align: left;
+            color: #0096df;
+            font-size: 15px;
+
+        }
+        .agree-box .e-selfecheckbox {
+            display: none;
+        }
+
+
+
+          .agree-box .label-check>label {
+            font: 600 15px microsoft yahei;
+            cursor: pointer;
+        }
+        .agree-box .selfecheckbox_label:before {
+
+            display: inline-block;
+            vertical-align: middle;
+            width: 13px;
+            height: 13px;
+            border: 2px solid #7c7e7e;
+            margin-right: 6px;
+            margin-bottom: 2px;
+            border-radius: 100%;
+        }
+        .fontwz {
+             color: #5482c7;
+             border-bottom: 1px solid #5482c7;
+         }
+
+
+
+          .btn_rulesTopBox {
+             position: absolute;
+             top: 0;
+             right: 0;
+             z-index: 3;
+             width: 73%;
+             height: 100%;
+         }
+         .button-submit {
+             width: 100%;
+             height: 50px;
+             font: 18px microsoft yahei;
+             text-align: center;
+             line-height: 50px;
+             border: none;
+             outline: none;
+             background: #d4a55d;
+             color: #fff;
+             border-radius: 3px;
+             margin-top: 30px;
+         }
+    </style>
+    <link rel="stylesheet" href="../js/layui/css/layui.css">
+
+</head>
+<body>
+
+<div class='nav-top'>
+    <shortcut/>
+    <!--头部-->
+    <div class='header' id='headApp'>
+        <div class='py-container'>
+            <div class='yui3-g Logo'>
+                <div class='yui3-u Left logoArea'>
+                    <a class='logo-bd' title='大金' href='index.html' target='_blank'></a>
+                </div>
+                <div class='yui3-u Center searchArea'>
+                    <div class='search'>
+                        <form action='' class='sui-form form-inline'>
+                            <!--searchAutoComplete-->
+                            <div class='input-append'>
+                                <input type='text' id='autocomplete' v-model='key'
+                                       class='input-error input-xxlarge'/>
+                                <button @click='search' class='sui-btn btn-xlarge btn-danger' type='button'>搜索</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class='hotwords'>
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class='yui3-u Right shopArea'>
+                    <div class='fr shopcar'>
+                        <div class='show-shopcar' id='shopcar'>
+                            <span class='car'></span>
+                            <a class='sui-btn btn-default btn-xlarge' href='cart.html' target='_blank'>
+                                <span>我的购物车</span>
+                                <i class='shopnum'>0</i>
+                            </a>
+                            <div class='clearfix shopcarlist' id='shopcarlist' style='display:none'>
+                                <p>'啊哦，你的购物车还没有商品哦！'</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='yui3-g NavList'>
+                <!--<div class='yui3-u Left all-sort'>
+                    <h4>大金空调</h4>
+                </div>-->
+                <div class='yui3-u Center navArea'>
+                    <ul class='nav'>
+
+                        <li class='f-item'><a href='index.html'>首页</a></li>
+                        <li class='f-item'><a
+                                href='https://www.daikin-china.com.cn/?hmsr=baidu&hmpl=pcbz&hmcu=0528&hmkw=Title'>大金商城</a>
+                        </li>
+                        <li class='f-item'><a href='shouhou.html'>售后</a></li>
+                        <li class='f-item'><a href="zixun.html">咨询</a></li>
+                        <li class='f-item yui3-u Left all-sort'><a href="yuding.html">预定</a></li>
+                        <li class='f-item'><a href='templat.html'>联系我们</a></li>
+                        <!--                            <li class='f-item'><a href='seckill-index.html' target='_blank'>秒杀</a></li>
+                        -->                        </ul>
+                </div>
+                <div class='yui3-u Right'></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+    <div id="frameScroll" class="py-container">
+        <div class="bread">
+            <!--面包屑-->
+            <ul class=" sui-breadcrumb">
+                <li><span>全部结果:</span></li>
+                <li><a href="index.html">首页</a></li>
+                <li><span>预定</span></li>
+            </ul>
+        </div>
+
+        <div class="dialog-box-content">
+            <div class="dialog-cont-box"><h2>免费获取您的专属空气解决方案</h2>
+                <form>
+                    <div class="dialog-goods"><h3>感兴趣的单品</h3>
+                        <div class="goods-checboxs" >
+                            <div class="label-check" data-val="qCAADdgsXM">
+                                <input type="checkbox" class="e-selfecheckbox" name="interest" id="place1"
+                                       value="挂壁机柜机">
+                                <label class="selfecheckbox_label" for="place1">挂壁机柜机</label>
+                            </div>
+                            <div class="label-check" data-val="qCAADdgsXM">
+                                <input type="checkbox" class="e-selfecheckbox" name="interest" id="place2"
+                                       value="家用中央空调">
+                                <label class="selfecheckbox_label" for="place2">家用中央空调</label>
+                            </div>
+                            <div class="label-check" data-val="qCAADdgsXM">
+                                <input type="checkbox" class="e-selfecheckbox" name="interest" id="place3"
+                                       value="商用空调">
+                                <label class="selfecheckbox_label" for="place3">商用空调</label>
+                            </div>
+                            <div class="label-check" data-val="qCAADdgsXM">
+                                <input type="checkbox" class="e-selfecheckbox" name="interest" id="place4"
+                                       value="地暖">
+                                <label class="selfecheckbox_label" for="place4">地暖</label>
+                            </div>
+                            <div class="label-check" data-val="qCAADdgsXM">
+                                <input type="checkbox" class="e-selfecheckbox" name="interest" id="place5"
+                                       value="新风">
+                                <label class="selfecheckbox_label" for="place5">新风</label>
+                            </div>
+                            <div class="label-check" data-val="qCAADdgsXM">
+                                <input type="checkbox" class="e-selfecheckbox" name="interest" id="place6"
+                                       value="除湿机">
+                                <label class="selfecheckbox_label" for="place6">除湿机</label>
+                            </div>
+                        </div>
+                        <div class="input-list">
+                            <h5 style="margin-left: 1.3%;margin-bottom: 2%;margin-top: 2%">*为必填项</h5>
+
+                            <div class="input-list-box">
+                                <div class="layui-form">
+                                    <div class="layui-form-item" id="area-picker">
+                                        <div class="layui-form-label" style="width: 8%;float: left">所在城市*</div>
+                                        <div class="layui-input-inline" style="width: 200px;">
+                                            <select name="province" class="province-selector" data-value="广东省"
+                                                    lay-filter="province-1">
+                                                <option value="">请选择省</option>
+                                            </select>
+                                        </div>
+                                        <div class="layui-input-inline" style="width: 200px;">
+                                            <select name="city" class="city-selector" data-value="深圳市"
+                                                    lay-filter="city-1">
+                                                <option value="">请选择市</option>
+                                            </select>
+                                        </div>
+                                        <div class="layui-input-inline" style="width: 200px;">
+                                            <select name="county" class="county-selector" data-value="龙岗区"
+                                                    lay-filter="county-1">
+                                                <option value="">请选择区</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="input-li" style="margin-left: 1.3%;"><span>您的姓名*</span>
+                                    <input name="GBnSfKMvyV" id="GBnSfKMvyV" type="text" placeholder="请输入您的姓名"
+                                           class="GBnSfKMvyV">
+                                    <div class="label-check label-check1">
+                                        <input type="radio" class="e-selfecheckbox" name="MGmJHuKqFF"
+                                               id="mobile-man" value="男" checked="">
+                                        <label class="selfecheckbox_label" for="mobile-man">先生</label>
+                                    </div>
+                                    <div class="label-check">
+                                        <input type="radio" class="e-selfecheckbox" name="MGmJHuKqFF"
+                                               id="mobile-woman" value="女">
+                                        <label class="selfecheckbox_label" for="mobile-woman">女士</label>
+                                    </div>
+                                </div>
+                                <div class="input-li" style="margin-left: 1.3%;"><span>联系方式*</span><input type="tel"
+                                                                                                          name="yXMSHqreLA"
+                                                                                                          id="yXMSHqreLA"
+                                                                                                          placeholder="请输入您的电话">
+                                </div>
+
+
+                                <li class="fx-box" style="margin-left: 1.3%;">
+                                    <span>您的房型*</span>
+                                    <input class="radiofx" type="radio" value="公寓" name="YjYBSxbBpt" id="radio1"
+                                           checked="checked">
+                                    <label class="lab01" for="radio1">
+                                        公寓
+                                        <select id="select_fang" name="gmXJqCdFxB">
+                                            <option value="0" selected="">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>室
+                                        <select id="select_ting" name="staAfdBgGW">
+                                            <option value="0" selected="">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>厅
+                                    </label>
+                                    <input class="radiofx" type="radio" value="复式/别墅" name="YjYBSxbBpt" id="radio2">
+                                    <label for="radio2">复式/别墅</label>
+                                </li>
+                                <li class="pfm" style="margin-left: 1.3%;">
+                                    <span>建筑面积*</span>
+                                    <input class="pfm-input" oninput="value=value.replace(/[^\d]/g,'')" type="tel"
+                                           name="AXUharrtTU" id="AXUharrtTU" placeholder="请输入建筑面积">
+                                    <div class="pfmwz">平方米</div>
+                                </li>
+                                <div class="input-textarea" style="font-size:16px;margin-left: 1.3%;" ><p>留言：</p><textarea
+                                        name="tjHRvkFhtK" id="tjHRvkFhtK" placeholder="请输入您的留言"></textarea></div>
+
+                                <div class="input-li codebox"  style="margin-left: 1.3%;" ><p>验证码：</p><input type="text" name="mobile-code"
+                                                                     placeholder="请输入验证码*"><span class="code"><img
+                                        src="https://www.daikin-china.com.cn/pub/api/getCode?width=230&amp;height=50&amp;f=30&amp;x=45&amp;y=35"
+                                        alt=""></span></div>
+                            </div>
+                            <div class="dialog-tips"><h3></h3>
+                                <p></p>
+                                <div class="agree-box" style="margin-top: 10px;margin-left: 1.3%;">
+                                    <div class="label-check"><input type="checkbox" class=""
+                                                                    name="mobile-agree" id="mobile-agree"> <label
+                                            class="selfecheckbox_label" for="mobile-agree">我已阅读并接受<font
+                                            class="fontwz">个人信息保护政策</font></label></div>
+                                    <div class="btn_rulesTopBox"></div>
+                                </div>
+                                <button class="button-submit" style="margin-left: 1.3%;" type="button" onclick="pcSubmit();">预约定制</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>                                <!-- star 20201117 -->
+            <div class="dialog-cont-box-success tip_success_info"
+                 style="text-align: center; padding: 5% 0px; display: none;">
+                <div class="" style="display: flex;align-items: center;    justify-content: center;"><img
+                        src="" alt=""> <span
+                        style="font-size: 28px;color: #333;margin-left: 20px;">提交成功！</span></div>
+                <div class="TIMEPublic_wz01">感谢您对大金品牌的关注</div>
+                <div class="TIMEPublic_wz02 succ_Tipwz">专业客服人员将在半小时内与您联系</div>
+                <div class="tel-time"><label>或您希望的回电时间是：</label><input type="text" class="pc_telTime"></div>
+                <div class="dialog-tj" onclick="Tip_sub_timeinfo()">确 认</div>
+            </div>                <!-- end 20201117 -->            </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>
+<!--底部栏位-->
+<!--页面底部，由js动态加载-->
+<!-- 底部栏位 -->
+<!--页面底部，由js动态加载-->
+<script src="../js/layui/layui.js"></script>
+<script type="text/javascript" src="../plugins/jquery/jquery.min.js"></script>
+<div class="clearfix footer" style="bottom: 0"></div>
+<script type="text/javascript">$(".footer").load("foot.html");</script>
+<!--页面底部END-->
+<!--页面底部END-->
+<script type="text/javascript" src="../js/model/cartModel.js"></script>
+<script type="text/javascript" src="../js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../js/plugins/sui/sui.min.js"></script>
+
+<script>
+    //配置插件目录
+    layui.config({
+        base: './mods/'
+        , version: '1.0'
+    });
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer
+            , form = layui.form
+            // , layarea = layui.layarea;
+
+        /*layarea.render({
+            elem: '#area-picker',
+            change: function (res) {
+                //选择结果
+                console.log(res);
+            }
+        });*/
+    });
+</script>
